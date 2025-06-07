@@ -71,7 +71,7 @@ import TermsOfServiceButton from './components/terms-of-service-button.vue'
 
             <UiSeparator label="Or continue with" />
 
-            <div class="flex items-center justify-between gap-4">
+            <div class="flex flex-col items-center justify-between gap-4">
               <GitHubButton />
               <GoogleButton />
             </div>
@@ -88,8 +88,3 @@ import TermsOfServiceButton from './components/terms-of-service-button.vue'
     </main>
   </div>
 </template>
-
-<route lang="yaml">
-  meta:
-    layout: blank
-</route>

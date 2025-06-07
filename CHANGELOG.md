@@ -1,6 +1,59 @@
 # Changelog
 
 
+## v0.3.2
+
+[compare changes](https://github.com/Whbbit1999/shadcn-vue-admin/compare/v0.3.1...v0.3.2)
+
+### 🩹 Fixes
+
+- Search-menu dialog error ([0fd2d7e](https://github.com/Whbbit1999/shadcn-vue-admin/commit/0fd2d7e))
+- Build error, use unplugin-vue-router,router name type ([010122f](https://github.com/Whbbit1999/shadcn-vue-admin/commit/010122f))
+- Remove unplugin-vue-router, pending migrate-to-unplugin-vue-router branch accomplish ([b2f4f64](https://github.com/Whbbit1999/shadcn-vue-admin/commit/b2f4f64))
+- Index page remove default layout ([8524cf4](https://github.com/Whbbit1999/shadcn-vue-admin/commit/8524cf4))
+
+### 📦 Build
+
+- Use unplugin-vue-router instead of vite-plugin-pages ([c9aaf4a](https://github.com/Whbbit1999/shadcn-vue-admin/commit/c9aaf4a))
+
+### 🏡 Chore
+
+- **release:** V0.3.0 ([fc500d1](https://github.com/Whbbit1999/shadcn-vue-admin/commit/fc500d1))
+- **release:** V0.3.1 ([3f80295](https://github.com/Whbbit1999/shadcn-vue-admin/commit/3f80295))
+- Vite-env.d.ts add unplugin-vue-router/client ([631e5db](https://github.com/Whbbit1999/shadcn-vue-admin/commit/631e5db))
+
+### ❤️ Contributors
+
+- Whbbit1999 ([@Whbbit1999](https://github.com/Whbbit1999))
+
+## v0.3.1
+
+[compare changes](https://github.com/Whbbit1999/shadcn-vue-admin/compare/v0.3.0...v0.3.1)
+
+### 🩹 Fixes
+
+- Use vue-sonner instead of shadcn-vue/toast ([8d020fd](https://github.com/Whbbit1999/shadcn-vue-admin/commit/8d020fd))
+
+### 🏡 Chore
+
+- **release:** V0.3.0 ([fc500d1](https://github.com/Whbbit1999/shadcn-vue-admin/commit/fc500d1))
+
+### ❤️ Contributors
+
+- Whbbit1999 <luckyboy_dong@sina.com>
+
+## v0.3.0
+
+[compare changes](https://github.com/Whbbit1999/shadcn-vue-admin/compare/v0.3.0...v0.3.0)
+
+### 🩹 Fixes
+
+- Use vue-sonner instead of shadcn-vue/toast ([8d020fd](https://github.com/Whbbit1999/shadcn-vue-admin/commit/8d020fd))
+
+### ❤️ Contributors
+
+- Whbbit1999 <luckyboy_dong@sina.com>
+
 ## v0.2.5
 
 [compare changes](https://github.com/Whbbit1999/shadcn-vue-admin/compare/v0.2.4...v0.2.5)
