@@ -1,6 +1,7 @@
 <script lang="ts" setup>
+import { toast } from 'vue-sonner'
+
 import type { User } from '../data/schema'
-import { toast } from '@/components/ui/toast'
 
 const { user } = defineProps<{
   user: User
@@ -11,8 +12,7 @@ const emits = defineEmits<{
 }>()
 
 function handleRemove() {
-  toast({
-    title: `The following task has been deleted:`,
+  toast(`The following task has been deleted:`, {
     description: h('pre', { class: 'mt-2 w-[340px] rounded-md bg-slate-950 p-4' }, h('code', { class: 'text-white' }, JSON.stringify(user, null, 2))),
   })
 

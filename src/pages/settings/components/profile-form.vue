@@ -1,4 +1,9 @@
 <script setup lang="ts">
+import { toTypedSchema } from '@vee-validate/zod'
+import { X } from 'lucide-vue-next'
+import { FieldArray, useForm } from 'vee-validate'
+import { toast } from 'vue-sonner'
+
 import { Button } from '@/components/ui/button'
 import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
@@ -12,38 +17,13 @@ import {
 } from '@/components/ui/select'
 import { Separator } from '@/components/ui/separator'
 import { Textarea } from '@/components/ui/textarea'
-import { toast } from '@/components/ui/toast'
 import { cn } from '@/lib/utils'
-import { toTypedSchema } from '@vee-validate/zod'
-import { X } from 'lucide-vue-next'
-import { FieldArray, useForm } from 'vee-validate'
-import { z } from 'zod'
+
+import { profileValidator } from '../validators/profile.validator'
 
 const verifiedEmails = ref(['m@example.com', 'm@google.com', 'm@support.com'])
 
-const profileFormSchema = toTypedSchema(z.object({
-  username: z
-    .string()
-    .min(2, {
-      message: 'Username must be at least 2 characters.',
-    })
-    .max(30, {
-      message: 'Username must not be longer than 30 characters.',
-    }),
-  email: z
-    .string({
-      required_error: 'Please select an email to display.',
-    })
-    .email(),
-  bio: z.string().max(160, { message: 'Bio must not be longer than 160 characters.' }).min(4, { message: 'Bio must be at least 2 characters.' }),
-  urls: z
-    .array(
-      z.object({
-        value: z.string().url({ message: 'Please enter a valid URL.' }),
-      }),
-    )
-    .optional(),
-}))
+const profileFormSchema = toTypedSchema(profileValidator)
 
 const { handleSubmit, resetForm } = useForm({
   validationSchema: profileFormSchema,
@@ -57,8 +37,7 @@ const { handleSubmit, resetForm } = useForm({
 })
 
 const onSubmit = handleSubmit((values) => {
-  toast({
-    title: 'You submitted the following values:',
+  toast('You submitted the following values:', {
     description: h('pre', { class: 'mt-2 w-[340px] rounded-md bg-slate-950 p-4' }, h('code', { class: 'text-white' }, JSON.stringify(values, null, 2))),
   })
 })
