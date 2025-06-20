@@ -1,7 +1,8 @@
 <script lang="ts" setup>
+import { BadgeCheck } from 'lucide-vue-next'
+
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
-import { BadgeCheck } from 'lucide-vue-next'
 
 interface Props {
   title: string
@@ -45,7 +46,7 @@ defineProps<Props>()
         v-for="(feature, index) in features" :key="feature + index"
         class="flex items-center gap-3 mb-2 text-muted-foreground"
       >
-        <BadgeCheck class="w-5 h-5 text-primary" />
+        <BadgeCheck class="size-5 text-primary" />
         {{ feature }}
       </div>
     </CardContent>

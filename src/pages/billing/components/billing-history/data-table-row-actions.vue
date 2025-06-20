@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import type { Row } from '@tanstack/vue-table'
 import type { Component } from 'vue'
-import type { Billing } from './data/schema'
+
 import { Ellipsis } from 'lucide-vue-next'
+
+import type { Billing } from './data/schema'
+
 import BillingDetail from './billing-detail.vue'
 import { billingSchema } from './data/schema'
 
@@ -28,7 +31,7 @@ function handleSelect(command: string) {
           variant="ghost"
           class="flex h-8 w-8 p-0 data-[state=open]:bg-muted"
         >
-          <Ellipsis class="w-4 h-4" />
+          <Ellipsis class="size-4" />
           <span class="sr-only">Open menu</span>
         </UiButton>
       </UiDropdownMenuTrigger>

@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import type { Component } from 'vue'
+
 import { Milestone } from 'lucide-vue-next'
 
-const { icon = Milestone } = defineProps<{
+const { icon } = defineProps<{
   name: string
   icon?: Component
 }>()
@@ -10,7 +11,8 @@ const { icon = Milestone } = defineProps<{
 
 <template>
   <div class="flex items-center gap-2">
-    <component :is="icon" class="w-4 h-4" />
+    <component :is="icon" v-if="icon" class="size-4" />
+    <Milestone v-else class="size-4" />
     {{ name }}
   </div>
 </template>

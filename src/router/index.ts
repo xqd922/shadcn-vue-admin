@@ -1,13 +1,15 @@
 import { setupLayouts } from 'virtual:generated-layouts'
-import { createRouter, createWebHistory } from 'vue-router'
-import generatedRoutes from '~pages'
+import { createWebHistory } from 'vue-router'
+import { createRouter } from 'vue-router/auto'
+import { handleHotUpdate, routes } from 'vue-router/auto-routes'
+
 import { createRouterGuard } from './guard'
 import publicRoutes from './public-routes'
 
-const routes = setupLayouts(generatedRoutes)
 const router = createRouter({
   history: createWebHistory(),
-  routes: [...routes, ...publicRoutes],
+  routes: [...setupLayouts(routes), ...publicRoutes],
+
   scrollBehavior() {
     return { left: 0, top: 0, behavior: 'smooth' }
   },
@@ -16,3 +18,7 @@ const router = createRouter({
 createRouterGuard(router)
 
 export default router
+
+if (import.meta.hot) {
+  handleHotUpdate(router)
+}

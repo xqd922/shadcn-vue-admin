@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Page from '@/components/global-layout/basic-page.vue'
+
 import { columns } from './components/columns'
 import DataTable from './components/data-table.vue'
 import TaskCreate from './components/task-create.vue'
@@ -17,7 +18,7 @@ import tasks from './data/tasks.json'
       <TaskImport />
       <TaskCreate />
     </template>
-    <div class="w-[calc(100svw-2rem)] md:w-full overflow-x-auto">
+    <div class="overflow-x-auto">
       <DataTable :data="tasks" :columns="columns" />
     </div>
   </Page>

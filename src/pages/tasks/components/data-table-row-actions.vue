@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import type { Row } from '@tanstack/vue-table'
 import type { Component } from 'vue'
-import type { Task } from '../data/schema'
+
 import { Ellipsis, FilePenLine, Trash2 } from 'lucide-vue-next'
+
+import type { Task } from '../data/schema'
+
 import { labels } from '../data/data'
 import { taskSchema } from '../data/schema'
 import TaskDelete from './task-delete.vue'
@@ -45,7 +48,7 @@ const isOpen = ref(false)
           variant="ghost"
           class="flex h-8 w-8 p-0 data-[state=open]:bg-muted"
         >
-          <Ellipsis class="w-4 h-4" />
+          <Ellipsis class="size-4" />
           <span class="sr-only">Open menu</span>
         </UiButton>
       </UiDropdownMenuTrigger>
@@ -53,7 +56,7 @@ const isOpen = ref(false)
         <UiDialogTrigger as-child>
           <UiDropdownMenuItem @select.stop="handleSelect('edit')">
             <span>Edit</span>
-            <UiDropdownMenuShortcut> <FilePenLine class="w-4 h-4" /> </UiDropdownMenuShortcut>
+            <UiDropdownMenuShortcut> <FilePenLine class="size-4" /> </UiDropdownMenuShortcut>
           </UiDropdownMenuItem>
         </UiDialogTrigger>
 
@@ -82,7 +85,7 @@ const isOpen = ref(false)
         <UiDialogTrigger as-child>
           <UiDropdownMenuItem @select.stop="handleSelect('delete')">
             <span>Delete</span>
-            <UiDropdownMenuShortcut> <Trash2 class="w-4 h-4" /> </UiDropdownMenuShortcut>
+            <UiDropdownMenuShortcut> <Trash2 class="size-4" /> </UiDropdownMenuShortcut>
           </UiDropdownMenuItem>
         </UiDialogTrigger>
       </UiDropdownMenuContent>

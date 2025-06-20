@@ -1,4 +1,10 @@
 <script setup lang="ts">
+import { CalendarDate, DateFormatter, getLocalTimeZone, today } from '@internationalized/date'
+import { toTypedSchema } from '@vee-validate/zod'
+import { CalendarDays, Check, ChevronsUpDown } from 'lucide-vue-next'
+import { toDate } from 'reka-ui/date'
+import { toast } from 'vue-sonner'
+
 import { Button } from '@/components/ui/button'
 import { Calendar } from '@/components/ui/calendar'
 import {
@@ -17,13 +23,9 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover'
 import { Separator } from '@/components/ui/separator'
-import { toast } from '@/components/ui/toast'
 import { cn } from '@/lib/utils'
-import { CalendarDate, DateFormatter, getLocalTimeZone, today } from '@internationalized/date'
-import { toTypedSchema } from '@vee-validate/zod'
-import { CalendarDays, Check, ChevronsUpDown } from 'lucide-vue-next'
-import { toDate } from 'reka-ui/date'
-import { z } from 'zod'
+
+import { accountValidator } from '../validators/account.validator'
 
 const open = ref(false)
 const dateValue = ref()
@@ -45,26 +47,12 @@ const df = new DateFormatter('en-US', {
   dateStyle: 'long',
 })
 
-const accountFormSchema = toTypedSchema(z.object({
-  name: z
-    .string({
-      required_error: 'Required.',
-    })
-    .min(2, {
-      message: 'Name must be at least 2 characters.',
-    })
-    .max(30, {
-      message: 'Name must not be longer than 30 characters.',
-    }),
-  dob: z.string().datetime().optional().refine(date => date !== undefined, 'Please select a valid date.'),
-  language: z.string().min(1, 'Please select a language.'),
-}))
+const accountFormSchema = toTypedSchema(accountValidator)
 
 // https://github.com/logaretm/vee-validate/issues/3521
 // https://github.com/logaretm/vee-validate/discussions/3571
 async function onSubmit(values: any) {
-  toast({
-    title: 'You submitted the following values:',
+  toast('You submitted the following values:', {
     description: h('pre', { class: 'mt-2 w-[340px] rounded-md bg-slate-950 p-4' }, h('code', { class: 'text-white' }, JSON.stringify(values, null, 2))),
   })
 }
@@ -106,12 +94,12 @@ async function onSubmit(values: any) {
                   !value && 'text-muted-foreground',
                 )"
               >
-                <CalendarDays class="w-4 h-4 mr-2 opacity-50" />
+                <CalendarDays class="size-4 opacity-50" />
                 <span>{{ value ? df.format(toDate(dateValue, getLocalTimeZone())) : "Pick a date" }}</span>
               </Button>
             </FormControl>
           </PopoverTrigger>
-          <PopoverContent class="p-0">
+          <PopoverContent>
             <Calendar
               v-model:placeholder="placeholder"
               v-model="dateValue"
@@ -157,7 +145,7 @@ async function onSubmit(values: any) {
                   (language) => language.value === value,
                 )?.label : 'Select language...' }}
 
-                <ChevronsUpDown class="w-4 h-4 ml-2 opacity-50 shrink-0" />
+                <ChevronsUpDown class="size-4 ml-2 opacity-50 shrink-0" />
               </Button>
             </FormControl>
           </PopoverTrigger>

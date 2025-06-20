@@ -1,10 +1,13 @@
 <script lang="ts" setup>
-import type { Task } from '../data/schema'
-import { FormField } from '@/components/ui/form'
-import { toast } from '@/components/ui/toast/use-toast'
 import { toTypedSchema } from '@vee-validate/zod'
 import { useForm } from 'vee-validate'
+import { toast } from 'vue-sonner'
 import * as z from 'zod'
+
+import { FormField } from '@/components/ui/form'
+
+import type { Task } from '../data/schema'
+
 import { labels, priorities, statuses } from '../data/data'
 
 const props = defineProps<{
@@ -23,8 +26,7 @@ const { isFieldDirty, handleSubmit } = useForm({
   validationSchema: formSchema,
 })
 const onSubmit = handleSubmit((values) => {
-  toast({
-    title: 'You submitted the following values:',
+  toast('You submitted the following values:', {
     description: h('pre', { class: 'mt-2 w-[340px] rounded-md bg-slate-950 p-4' }, h('code', { class: 'text-white' }, JSON.stringify(values, null, 2))),
   })
   emits('close')
@@ -56,7 +58,7 @@ const onSubmit = handleSubmit((values) => {
                 <UiSelectGroup>
                   <UiSelectItem v-for="status in statuses" :key="status.value" :value="status.value">
                     <div class="flex items-center gap-2">
-                      <component :is="status.icon" class="w-4 h-4 shrink-0" />
+                      <component :is="status.icon" class="size-4 shrink-0" />
                       {{ status.label }}
                     </div>
                   </UiSelectItem>

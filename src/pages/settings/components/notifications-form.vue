@@ -1,25 +1,18 @@
 <script setup lang="ts">
+import { toTypedSchema } from '@vee-validate/zod'
+import { useForm } from 'vee-validate'
+import { toast } from 'vue-sonner'
+
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Separator } from '@/components/ui/separator'
 import { Switch } from '@/components/ui/switch'
-import { toast } from '@/components/ui/toast'
-import { toTypedSchema } from '@vee-validate/zod'
-import { useForm } from 'vee-validate'
-import { z } from 'zod'
 
-const notificationsFormSchema = toTypedSchema(z.object({
-  type: z.enum(['all', 'mentions', 'none'], {
-    required_error: 'You need to select a notification type.',
-  }),
-  mobile: z.boolean().default(false).optional(),
-  communication_emails: z.boolean().default(false).optional(),
-  social_emails: z.boolean().default(false).optional(),
-  marketing_emails: z.boolean().default(false).optional(),
-  security_emails: z.boolean(),
-}))
+import { notificationsValidator } from '../validators/notifications.validator'
+
+const notificationsFormSchema = toTypedSchema(notificationsValidator)
 
 const { handleSubmit } = useForm({
   validationSchema: notificationsFormSchema,
@@ -32,8 +25,7 @@ const { handleSubmit } = useForm({
 })
 
 const onSubmit = handleSubmit((values) => {
-  toast({
-    title: 'You submitted the following values:',
+  toast('You submitted the following values:', {
     description: h('pre', { class: 'mt-2 w-[340px] rounded-md bg-slate-950 p-4' }, h('code', { class: 'text-white' }, JSON.stringify(values, null, 2))),
   })
 })
@@ -58,7 +50,7 @@ const onSubmit = handleSubmit((values) => {
             class="flex flex-col space-y-1"
             v-bind="componentField"
           >
-            <FormItem class="flex items-center space-x-3 space-y-0">
+            <FormItem class="flex items-center  space-y-0">
               <FormControl>
                 <RadioGroupItem value="all" />
               </FormControl>
@@ -66,7 +58,7 @@ const onSubmit = handleSubmit((values) => {
                 All new messages
               </FormLabel>
             </FormItem>
-            <FormItem class="flex items-center space-x-3 space-y-0">
+            <FormItem class="flex items-center  space-y-0">
               <FormControl>
                 <RadioGroupItem value="mentions" />
               </FormControl>
@@ -74,7 +66,7 @@ const onSubmit = handleSubmit((values) => {
                 Direct messages and mentions
               </FormLabel>
             </FormItem>
-            <FormItem class="flex items-center space-x-3 space-y-0">
+            <FormItem class="flex items-center  space-y-0">
               <FormControl>
                 <RadioGroupItem value="none" />
               </FormControl>
