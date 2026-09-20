@@ -24,6 +24,7 @@ import {
   sortFn_text,
   tableFeatures,
 } from '@tanstack/vue-table'
+import { unref } from 'vue'
 
 import { DEFAULT_PAGE_SIZE } from '@/constants/app'
 
@@ -87,6 +88,10 @@ export function useDataTable<T extends RowData>(
       },
     },
     ...options,
+    // Unwrap before TanStack's merge falls back to the ref when its value is undefined.
+    get rowCount() {
+      return unref(options.rowCount)
+    },
   })
 }
 

@@ -1,3 +1,6 @@
+// @vitest-environment happy-dom
+
+import { mount } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
 import { computed, effectScope, nextTick, shallowRef } from 'vue'
 
@@ -5,6 +8,7 @@ import { DEFAULT_PAGE_SIZE } from '@/constants/app'
 
 import type { DataTableColumnDef } from '../table'
 
+import DataTable from '../data-table.vue'
 import { useDataTable } from '../table'
 
 interface Person {
@@ -25,6 +29,17 @@ const columns: DataTableColumnDef<Person>[] = [
 ]
 
 describe('useDataTable', () => {
+  it('renders a finite page count for client-side pagination', async () => {
+    const wrapper = mount(DataTable<Person>, {
+      props: { columns, data },
+    })
+
+    expect(wrapper.text()).toContain('Page 1 of 1')
+    expect(wrapper.text()).not.toContain('NaN')
+
+    wrapper.unmount()
+  })
+
   it('uses the shared default page size', () => {
     const scope = effectScope()
     const table = scope.run(() => useDataTable<Person>({ columns, data }))!
