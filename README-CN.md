@@ -5,7 +5,7 @@
 [![Vue 3.5+](https://img.shields.io/badge/Vue-3.5+-brightgreen.svg?logo=vue.js)](https://vuejs.org/)
 [![Vite](https://img.shields.io/badge/Vite-8+-4f30e8.svg?logo=vite)](https://vitejs.dev/)
 [![pnpm 10+](https://img.shields.io/badge/pnpm-10+-orange.svg?logo=pnpm)](https://pnpm.io/)
-[![TypeScript 5.9+](https://img.shields.io/badge/TypeScript-5.9+-blue.svg?logo=typescript)](https://www.typescriptlang.org/)
+[![TypeScript 6.0+](https://img.shields.io/badge/TypeScript-6.0+-blue.svg?logo=typescript)](https://www.typescriptlang.org/)
 
 [English](./README.md) | 简体中文
 
@@ -21,7 +21,7 @@
 - ✅ 亮/暗色模式切换，支持 Pinia 持久化存储
 - ✅ 全局搜索命令面板
 - ✅ 符合可访问性标准的 shadcn-ui 侧边栏导航
-- ✅ 8+ 个预构建的功能页面
+- ✅ 20+ 个预构建的功能页面
 - ✅ 基于 shadcn-vue 扩展的自定义组件库
 - ✅ 基于文件结构的自动路由生成系统
 - ✅ 国际化支持（vue-i18n v11+）
@@ -33,28 +33,27 @@
 
 | 分类             | 工具与库（主版本号）                                                                                                                                       |
 | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 核心框架         | [Vue 3.5+](https://vuejs.org/), [TypeScript 5.9+](https://www.typescriptlang.org/)                                                                         |
+| 核心框架         | [Vue 3.5+](https://vuejs.org/), [TypeScript 6+](https://www.typescriptlang.org/)                                                                           |
 | UI 组件          | [shadcn-vue](https://www.shadcn-vue.com), [reka-ui 2+](https://www.reka-ui.com/), [@lucide/vue](https://lucide.dev/)                                       |
-| 构建工具         | [Vite](https://vitejs.dev/), [@vitejs/plugin-vue 6+](https://github.com/vitejs/vite-plugin-vue)                                                            |
-| 状态管理         | [Pinia 3+](https://pinia.vuejs.org/), [pinia-plugin-persistedstate 4+](https://prazdevs.github.io/pinia-plugin-persistedstate/)                            |
+| 构建工具         | [Vite 8+](https://vitejs.dev/), [@vitejs/plugin-vue 6+](https://github.com/vitejs/vite-plugin-vue)                                                         |
+| 状态管理         | [Pinia 4+](https://pinia.vuejs.org/), [pinia-plugin-persistedstate 4+](https://prazdevs.github.io/pinia-plugin-persistedstate/)                            |
 | 路由管理         | [vue-router 5+](https://router.vuejs.org/), [vite-plugin-vue-layouts 0.11+](https://github.com/JohnCampionJr/vite-plugin-vue-layouts)                      |
 | 样式系统         | [Tailwind CSS 4+](https://tailwindcss.com/), [tw-animate-css 1+](https://github.com/Wombosvideo/tw-animate-css)                                            |
-| 数据处理         | [TanStack Vue Query 5+](https://tanstack.com/query/latest), [TanStack Vue Table 8+](https://tanstack.com/table/latest)                                     |
+| 数据处理         | [TanStack Vue Query 5+](https://tanstack.com/query/latest), [TanStack Vue Table 9+](https://tanstack.com/table/latest)                                     |
 | 表单验证         | [TanStack Vue Form](https://tanstack.com/form/latest/docs/overview), [Zod 4+](https://zod.dev/)                                                            |
-| 动画效果         | [@formkit/auto-animate 0.9+](https://auto-animate.formkit.com/), [motion-v 1+](https://motion-v.vercel.app/)                                               |
+| 动画效果         | [@formkit/auto-animate 0.10+](https://auto-animate.formkit.com/), [motion-v 2+](https://motion-v.vercel.app/)                                              |
 | 国际化           | [vue-i18n 11+](https://vue-i18n.intlify.dev/)                                                                                                              |
 | HTTP 客户端      | [ofetch](https://github.com/unjs/ofetch)                                                                                                                   |
-| 代码规范与格式化 | [ESLint 9+](https://eslint.org/), [@antfu/eslint-config 7+](https://github.com/antfu/eslint-config)                                                        |
-| 开发工具         | [vite-plugin-vue-devtools 8+](https://github.com/webfansplz/vite-plugin-vue-devtools)                                                                      |
-| 自动导入         | [unplugin-auto-import 20+](https://github.com/antfu/unplugin-auto-import), [unplugin-vue-components 30+](https://github.com/antfu/unplugin-vue-components) |
+| 代码规范与格式化 | [ESLint 10+](https://eslint.org/), [@antfu/eslint-config 9+](https://github.com/antfu/eslint-config)                                                       |
+| 自动导入         | [unplugin-auto-import 21+](https://github.com/antfu/unplugin-auto-import), [unplugin-vue-components 32+](https://github.com/antfu/unplugin-vue-components) |
 
 ## 🚀 快速开始
 
 ### 前置依赖（严格版本要求）
 
-- Node.js ≥ 22.x（推荐 LTS 版本）
-- **pnpm 10+**（项目指定包管理器）
-- TypeScript ≥ 5.9.0
+- Node.js ≥ 22.15（推荐 LTS 版本）
+- **pnpm 10+**（项目指定包管理器，锁定为 pnpm 11）
+- TypeScript ≥ 6.0.0
 
 ### 安装步骤
 
@@ -86,10 +85,14 @@
 
 ```bash
 pnpm dev             # 启动开发服务器
-pnpm build           # 生产构建（包含 TypeScript 类型检查）
+pnpm build           # 生产构建（vue-tsc 类型检查 + vite 构建）
+pnpm build:analyze   # 构建并生成包体积分析报告（ANALYZE=true）
 pnpm preview         # 预览生产构建产物
 pnpm lint            # 执行 ESLint 代码检查
 pnpm lint:fix        # 自动修复代码规范问题
+pnpm test            # 运行单元测试（监听模式）
+pnpm test:run        # 运行单元测试（单次）
+pnpm test:coverage   # 运行单元测试并生成覆盖率报告
 pnpm release         # 使用 bumpp 升级版本
 ```
 
@@ -99,7 +102,7 @@ pnpm release         # 使用 bumpp 升级版本
 
 - 所有项目依赖每周二（UTC/GMT +8:00）更新，以确保安全性与兼容性。
 - 关键依赖版本严格锁定，避免兼容性问题。
-- 通过 `simple-git-hooks` + `lint-staged` 启用 Git 钩子（pre-commit），保障代码质量。
+- 通过 `simple-git-hooks` + `nano-staged` 启用 Git 钩子（pre-commit），保障代码质量。
 
 ### 主题定制
 

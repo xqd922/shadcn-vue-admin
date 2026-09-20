@@ -5,7 +5,7 @@
 [![Vue 3.5+](https://img.shields.io/badge/Vue-3.5+-brightgreen.svg?logo=vue.js)](https://vuejs.org/)
 [![Vite](https://img.shields.io/badge/Vite-8+-4f30e8.svg?logo=vite)](https://vitejs.dev/)
 [![pnpm 10+](https://img.shields.io/badge/pnpm-10+-orange.svg?logo=pnpm)](https://pnpm.io/)
-[![TypeScript 5.9+](https://img.shields.io/badge/TypeScript-5.9+-blue.svg?logo=typescript)](https://www.typescriptlang.org/)
+[![TypeScript 6.0+](https://img.shields.io/badge/TypeScript-6.0+-blue.svg?logo=typescript)](https://www.typescriptlang.org/)
 
 [简体中文](./README-CN.md) | English
 
@@ -21,7 +21,7 @@ Forked from [shadcn-admin](https://github.com/satnaing/shadcn-admin)
 - ✅ Light/Dark mode toggle with Pinia persistent state
 - ✅ Global search command palette
 - ✅ Accessible shadcn-ui sidebar navigation
-- ✅ 8+ pre-built functional pages
+- ✅ 20+ pre-built functional pages
 - ✅ Custom component library with shadcn-vue extensions
 - ✅ Auto-generated routing system (based on file structure)
 - ✅ Internationalization support (vue-i18n v11+)
@@ -33,28 +33,27 @@ Forked from [shadcn-admin](https://github.com/satnaing/shadcn-admin)
 
 | Category             | Tools & Libraries (Major Versions)                                                                                                                         |
 | -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Core Framework       | [Vue 3.5+](https://vuejs.org/), [TypeScript 5.9+](https://www.typescriptlang.org/)                                                                         |
+| Core Framework       | [Vue 3.5+](https://vuejs.org/), [TypeScript 6+](https://www.typescriptlang.org/)                                                                           |
 | UI Components        | [shadcn-vue](https://www.shadcn-vue.com), [reka-ui 2+](https://www.reka-ui.com/), [@lucide/vue](https://lucide.dev/)                                       |
-| Build Tool           | [Vite](https://vitejs.dev/), [@vitejs/plugin-vue 6+](https://github.com/vitejs/vite-plugin-vue)                                                            |
-| State Management     | [Pinia 3+](https://pinia.vuejs.org/), [pinia-plugin-persistedstate 4+](https://prazdevs.github.io/pinia-plugin-persistedstate/)                            |
+| Build Tool           | [Vite 8+](https://vitejs.dev/), [@vitejs/plugin-vue 6+](https://github.com/vitejs/vite-plugin-vue)                                                         |
+| State Management     | [Pinia 4+](https://pinia.vuejs.org/), [pinia-plugin-persistedstate 4+](https://prazdevs.github.io/pinia-plugin-persistedstate/)                            |
 | Routing              | [vue-router 5+](https://router.vuejs.org/), [vite-plugin-vue-layouts 0.11+](https://github.com/JohnCampionJr/vite-plugin-vue-layouts)                      |
 | Styling              | [Tailwind CSS 4+](https://tailwindcss.com/), [tw-animate-css 1+](https://github.com/Wombosvideo/tw-animate-css)                                            |
-| Data Handling        | [TanStack Vue Query 5+](https://tanstack.com/query/latest), [TanStack Vue Table 8+](https://tanstack.com/table/latest)                                     |
+| Data Handling        | [TanStack Vue Query 5+](https://tanstack.com/query/latest), [TanStack Vue Table 9+](https://tanstack.com/table/latest)                                     |
 | Form Validation      | [TanStack Vue Form](https://tanstack.com/form/latest/docs/overview), [Zod 4+](https://zod.dev/)                                                            |
-| Animation            | [@formkit/auto-animate 0.9+](https://auto-animate.formkit.com/), [motion-v 1+](https://motion-v.vercel.app/)                                               |
+| Animation            | [@formkit/auto-animate 0.10+](https://auto-animate.formkit.com/), [motion-v 2+](https://motion-v.vercel.app/)                                              |
 | Internationalization | [vue-i18n 11+](https://vue-i18n.intlify.dev/)                                                                                                              |
 | HTTP Client          | [ofetch](https://github.com/unjs/ofetch)                                                                                                                   |
-| Linting & Formatting | [ESLint 9+](https://eslint.org/), [@antfu/eslint-config 7+](https://github.com/antfu/eslint-config)                                                        |
-| Dev Tools            | [vite-plugin-vue-devtools 8+](https://github.com/webfansplz/vite-plugin-vue-devtools)                                                                      |
-| Auto Import          | [unplugin-auto-import 20+](https://github.com/antfu/unplugin-auto-import), [unplugin-vue-components 30+](https://github.com/antfu/unplugin-vue-components) |
+| Linting & Formatting | [ESLint 10+](https://eslint.org/), [@antfu/eslint-config 9+](https://github.com/antfu/eslint-config)                                                       |
+| Auto Import          | [unplugin-auto-import 21+](https://github.com/antfu/unplugin-auto-import), [unplugin-vue-components 32+](https://github.com/antfu/unplugin-vue-components) |
 
 ## 🚀 Quick Start
 
 ### Prerequisites (Strict Version Requirements)
 
-- Node.js ≥ 22.x (LTS recommended)
-- **pnpm 10+** (Project-specified package manager)
-- TypeScript ≥ 5.9.0
+- Node.js ≥ 22.15 (LTS recommended)
+- **pnpm 10+** (Project-specified package manager, pinned to pnpm 11)
+- TypeScript ≥ 6.0.0
 
 ### Installation
 
@@ -87,9 +86,13 @@ Forked from [shadcn-admin](https://github.com/satnaing/shadcn-admin)
 ```bash
 pnpm dev             # Start development server
 pnpm build           # Build for production (vue-tsc + vite build)
+pnpm build:analyze   # Build with bundle visualizer (ANALYZE=true)
 pnpm preview         # Preview production build
 pnpm lint            # ESLint check
 pnpm lint:fix        # Auto fix lint issues
+pnpm test            # Run unit tests in watch mode
+pnpm test:run        # Run unit tests once
+pnpm test:coverage   # Run unit tests with coverage
 pnpm release         # Bump version with bumpp
 ```
 
@@ -99,7 +102,7 @@ pnpm release         # Bump version with bumpp
 
 - All project dependencies are updated every Tuesday （UTC/GMT +8:00） to ensure security and compatibility.
 - Version constraints are strictly managed (pinned versions for critical dependencies).
-- Git hooks (pre-commit) are enabled via `simple-git-hooks` + `lint-staged` for code quality.
+- Git hooks (pre-commit) are enabled via `simple-git-hooks` + `nano-staged` for code quality.
 
 ### Theme Customization
 
